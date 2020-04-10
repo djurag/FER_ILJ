@@ -1,14 +1,27 @@
 plugins {
     id 'java'
+    id 'antlr'
 }
+apply plugin: 'antlr'
 
 group 'org.example'
 version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    jcenter()
+}
+
+sourceSets{
+    main{
+        java{
+            srcDir 'src/main/java'
+            srcDir 'generated-src/antlr/main'
+        }
+    }
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    antlr("org.antlr:antlr4:4.8-1")
 }

@@ -1,0 +1,11 @@
+T__0=1
+T__1=2
+KEY=3
+OP=4
+ESC=5
+STRING=6
+WS=7
+'FILTER'=1
+'RETURN'=2
+'\\"'=5
+' '=7
