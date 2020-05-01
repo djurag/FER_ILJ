@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<library>
+    <book id="ID-1" available="true">
+        <isbn>9781781104873</isbn>
+        <title lang="en">Harry Potter and Goblet of Fire</title>
+        <author id="ID-2">
+            <name>J.K. Rowling</name>
+            <born>1965-07-31</born>
+            <dead>1900-01-01</dead>
+        </author>
+        <character id="ID-3">
+            <name>Harry Potter</name>
+            <born>1980-07-31</born>
+            <qualification>Wizard</qualification>
+        </character>
+        <character id="ID-4">
+            <name>Ron Weasley</name>
+            <born>1981-09-15</born>
+            <qualification>Fellow wizard</qualification>
+        </character>
+    </book>
+    <book id="ID-5" available="false">
+        <isbn>9789047508489</isbn>
+        <title lang="eng">The hunger games</title>
+        <author id="ID-6">
+            <name>Suzanne Collins</name>
+            <born>1962-08-10</born>
+            <dead>1900-01-01</dead>
+        </author>
+        <character id="ID-7">
+            <name>Katniss Everdeen</name>
+            <born>1990-12-23</born>
+            <qualification>Protagonist</qualification>
+        </character>
+    </book>
+</library>
