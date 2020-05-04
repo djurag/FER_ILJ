@@ -1,4 +1,4 @@
-package hr.tel.fer.ilj.dz.xmlValidator;
+package hr.tel.fer.ilj.dz.dz3.xmlValidator;
 
 
 import org.w3c.dom.Document;
