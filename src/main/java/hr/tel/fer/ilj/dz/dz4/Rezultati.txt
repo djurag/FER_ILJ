@@ -1,0 +1,184 @@
+Rezultati
+Za testiranje cu koristiti testne datoteke koje su isporucene unutar programa.
+
+1.1 `xml el books.xml` ispisat ce strukturu elemenata XML datoteke
+Ocekivani rezultat je ispisivanje strukture elemenata odabrane datoteke kako se pojavljuju u datoteci.
+
+Ispis:
+books
+books/begin
+books/book
+books/book/title
+books/book/author
+books/book/isbn
+books/book/isbn/br
+books/book
+books/book/title
+books/book/author
+books/book/isbn
+books/book/isbn/br
+
+Primjecujem da dobiveni rezultat odgovara ocekivanjima.
+
+1.2 `xml el -u books.xml` daje sortirani prikaz struktura elemenata XML datoteke 
+Ocekivani rezultat je ispisivanje jedinstvenih elemenata unutar struktura datoteke
+
+Ispis:
+books
+books/begin
+books/book
+books/book/author
+books/book/isbn
+books/book/isbn/br
+books/book/title
+
+Primjecujem da dobiveni rezultat odgovara ocekivanjima.
+
+1.3 `xml el -v books.xml` prikazuje atribute i njihove vrijednosti
+Ocekivani rezultat je ispisivanje atributa i vrijednosti atributa elemenata koji imaju atribute u strukturi datoteke
+
+Ispis:
+books
+books/begin
+books/book[@type='hardback']
+books/book/title
+books/book/author
+books/book/isbn[@id='1']
+books/book/isbn/br
+books/book[@type='paperback']
+books/book/title
+books/book/author
+books/book/isbn[@id='2']
+books/book/isbn/br
+
+Primjecujem da je uz neke elemente prikazan atribut i vrijednost istog pa zakljucujem da je rezultat sukladan ocekivanjima
+
+2.1 `xml ed -d books/book/isbn books.xml` brise elemente <isbn> iz odabrane datoteke
+
+Ispis prije izvodenja naredbe:
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<books>
+<begin/>
+<book type='hardback'>
+<title>Atlas Shrugged</title>
+<author>Ayn Rand</author>
+<isbn id='1'>0525934189<br/></isbn>
+</book>
+Next Book
+<book type='paperback'>
+<title>A Burnt-Out Case</title>
+<author>Graham Greene</author>
+<isbn id="2">0140185399<br/></isbn>
+</book>
+</books>
+
+Ocekivani rezultat je xml datoteka bez elemenata <isbn>
+
+Ispis nakon izvodenja:
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<books>
+<begin/>
+<book type='hardback'>
+<title>Atlas Shrugged</title>
+<author>Ayn Rand</author>
+</book>
+Next Book
+<book type='paperback'>
+<title>A Burnt-Out Case</title>
+<author>Graham Greene</author>
+</book>
+</books>
+
+Vidimo da je element uklonjen pa je rezultat sukladan ocekivanjima.
+
+2.2 `xml ed -r books/book/title -v naslov books.xml` mijenja naziv odabranih elemenata
+
+Ispis prije izvodenja naredbe:
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<books>
+<begin/>
+<book type='hardback'>
+<title>Atlas Shrugged</title>
+<author>Ayn Rand</author>
+<isbn id='1'>0525934189<br/></isbn>
+</book>
+Next Book
+<book type='paperback'>
+<title>A Burnt-Out Case</title>
+<author>Graham Greene</author>
+<isbn id="2">0140185399<br/></isbn>
+</book>
+</books>
+
+Ocekivani rezultat je promjena elemenata <title> u <naslov>
+
+Ispis nakon izvodenja:
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<books><
+begin/><
+book type="hardback">
+<naslov>Atlas Shrugged</naslov
+><author>Ayn Rand</author>
+<isbn id="1">0525934189<br/></isbn>
+</book>
+Next Book
+<book type="paperback">
+<naslov>A Burnt-Out Case</naslov>
+<author>Graham Greene</author>
+<isbn id="2">0140185399<br/></isbn><
+/book>
+</books>
+
+Vidimo da je <title> promijenjen u <naslov> stoga je rezultat sukladan ocekivanjima
+
+2.3 `xml ed -m books/book/title books/book/author books2.xml` pomice element <title> unutar elementa <author>
+
+Ipis prije izvodenja naredbe:
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<books>
+<begin/>
+<book type='hardback'>
+<title>Atlas Shrugged</title>
+<author>Ayn Rand</author>
+<isbn id='1'>0525934189<br/></isbn>
+</book>
+</books>
+
+Ocekivani rezultat je da ce se element <title> nalaziti unutar elementa <author>
+
+Ispis nakon izvodenja:
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<books>
+  <begin/>
+  <book type="hardback">
+    <author>Ayn Rand<title>Atlas Shrugged</title></author>
+    <isbn id="1">0525934189<br/></isbn>
+  </book>
+</books>
+
+Vidimo da se <title> nalazi unutar elementa <author> te je rezultat sukladan ocekivanjima
+
+
+3.1 `xml val -S table.xsd` koristimo za provjeru ispravnosti XML datoteke. Program se zaustavlja na prvoj gresci koju nade, ukoliko greska ne postoji ispisuje se valid
+Ocekivani rezultat je ispravna datoteka
+
+Ispis:
+xsd/table.xsd - valid
+
+Rezultat je sukladan ocekivanjima
+
+3.2 `xml val -d table.dtd books.xml` provjerava ispravnost XML datoteke u odnosu na dtd datoteku
+Ocekivani rezultat je da datoteka nece biti ispravna
+
+Ispis:
+xml/books.xml - invalid
+
+Rezultat je sukladan ocekivanjima
+
+3.3 `xml val -s xsd/table.xsd xml/table.xml` provjerava ispravnost XML datoteke u odnosu na xsd datoteku
+Ocekuvani rezultat je da ce datoteka biti ispravna
+
+Ipis:
+xml/table.xml - valid
+
+Rezultat je sukladan ocekivanjima
